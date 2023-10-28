@@ -1,0 +1,16 @@
+! Title: IceZ Addon Filter light
+! Description: Whitelist of youtube.com adblock rules for uBO and leave other rules work.
+! Version: 20231028131555
+! Expires: 1 days (update frequency)
+! Download: 
+! Homeapge: https://github.com/Kristol-Ice/IHaveYTPremiumNoNeedAdBlock-whitelist
+
+youtube.com#@#+js(set-constant, google_ad_status, 1)
+youtube.com#@#+js(set-constant, ytInitialPlayerResponse.adPlacements, undefined)
+youtube.com#@#+js(trusted-replace-xhr-response, /\"adPlacements.*?\"\}\}\}\]\,/, , /player\?key=|watch\?v=|youtubei\/v1\/player/)
+youtube.com#@#+js(trusted-replace-fetch-response, /"adPlacements.*?\/(aclk\?sa=L&ai=C(?!3QQpfbUyZYWKL_)[-_0-9A-Za-z]+__________|get_midroll_info\S+&token=ALHj).*?"\}\}\}\]\,/, , url:player?key=)
+youtube.com#@#+js(set-constant, yt.config_.EXPERIMENT_FLAGS.ab_det_gen_re, false)
+youtubekids.com,youtube-nocookie.com,youtube.com#@#+js(set-constant, ytInitialPlayerResponse.adPlacements, undefined)
+youtubekids.com,youtube-nocookie.com,youtube.com#@#+js(set-constant, ytInitialPlayerResponse.adSlots, undefined)
+youtubekids.com,youtube-nocookie.com,youtube.com#@#+js(set-constant, ytInitialPlayerResponse.playerAds, undefined)
+youtubekids.com,youtube-nocookie.com,youtube.com#@#+js(set-constant, playerResponse.adPlacements, undefined)
