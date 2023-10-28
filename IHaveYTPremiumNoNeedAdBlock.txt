@@ -1,8 +1,8 @@
-! Title: IceZ Addon Filter light
+! Title: IHaveYTPremiumNoNeedAdBlock-whitelist
 ! Description: Whitelist of youtube.com adblock rules for uBO and leave other rules work.
-! Version: 20231028131555
+! Version: 20231028131955
 ! Expires: 1 days (update frequency)
-! Download: 
+! Download: https://raw.githubusercontent.com/Kristol-Ice/IHaveYTPremiumNoNeedAdBlock-whitelist/main/IHaveYTPremiumNoNeedAdBlock.txt
 ! Homeapge: https://github.com/Kristol-Ice/IHaveYTPremiumNoNeedAdBlock-whitelist
 
 youtube.com#@#+js(set-constant, google_ad_status, 1)
