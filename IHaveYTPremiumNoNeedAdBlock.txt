@@ -1,26 +1,51 @@
 ! Title: IHaveYTPremiumNoNeedAdBlock-whitelist
 ! Description: Whitelist of youtube.com adblock rules for uBO and leave other rules work.
-! Version: 20231031231341
+! Version: 20231108133402
 ! Expires: 1 days (update frequency)
 ! Download: https://raw.githubusercontent.com/Kristol-Ice/IHaveYTPremiumNoNeedAdBlock-whitelist/main/IHaveYTPremiumNoNeedAdBlock.txt
 ! Homeapge: https://github.com/Kristol-Ice/IHaveYTPremiumNoNeedAdBlock-whitelist
 
+!uBlock Ads
 !below rules might need to insert to "My filters" yourself
 www.youtube.com#@#+js(replace-node-text, script, /(\(function serverContract\(\))/, /*start*/(function(){const handler={apply:(target\,thisArg\,args)=>{if(Array.isArray(args)){const arr=args[0];if(arr.adPlacements||arr.adSlots||arr.adBreakHeartbeatParams||arr.playerResponse){args=[{}]}}return Reflect.apply(target\,thisArg\,args)}};Object.getOwnPropertyNames=new Proxy(Object.getOwnPropertyNames\,handler);const cleanup=function(){const scripts=document.querySelectorAll("script");for(let i=scripts.length-1;i>=0;i--){if(scripts[i].textContent.startsWith("/*start*/")){scripts[i].textContent=scripts[i].textContent.replace(/\/\*start\*\/(.*)\/\*end\*\//g\,"");break}}};if(document.readyState!=="loading"){cleanup()}else{document.addEventListener("DOMContentLoaded"\,cleanup)}}());/*end*/ $1)
 www.youtube.com#@#+js(trusted-replace-xhr-response, /\"adPlacements.*?\"\}\}\}\]\,/, , /player\?key=|watch\?v=|youtubei\/v1\/player/)
 www.youtube.com#@#+js(trusted-replace-fetch-response, /(trackingParam":"kx_fmPxh.*?)"adPlacements.*?"\}\}\}\]\,/, $1, player?key=)
+www.youtube.com#@#+js(trusted-replace-fetch-response, /"adPlacements.*?\/(aclk\?sa=L&ai=C(?!3OQpfbUyZYWKL_)[-_0-9A-Za-z]+__________[-_0-9A-Za-z]+A[A-Za-z]AA&|get_midroll_info\S+&token=ALHj).*?"\}\}\}\]\,/, , player?key=)
+www.youtube.com#@#+js(replace-node-text, script, /^(\(function serverContract\(\))/s, /*start*/(function(){const nativeArrayFilter=Array.prototype.filter;const wrapper=(target\,thisArg\,args)=>{const ads=["adPlacements"\,"adSlots"\,"adBreakHeartbeatParams"\,"playerResponse"\,"playerAds"];if(thisArg&&Array.isArray(thisArg)){thisArg=nativeArrayFilter.call(thisArg\,e=>!ads.includes(e))}return Reflect.apply(target\,thisArg\,args)};const handler={apply:wrapper};Array.prototype.filter=new Proxy(Array.prototype.filter\,handler);const scripts=document.querySelectorAll("script");for(let i=scripts.length-1;i>=0;i--){if(scripts[i].textContent.startsWith("/*start*/")){scripts[i].textContent=scripts[i].textContent.replace(/\/\*start\*\/(.*)\/\*end\*\//g\,"");break}}}());/*end*/$1)
+www.youtube.com#@#+js(trusted-replace-fetch-response, /"adPlacements.*?("getAdBreakUrl":"https:\/\/www\.youtube\.com\/get_midroll_info\S+&token=ALHj|"(base)?[Uu]rl":"https:\/\/(secure)?pubads\.g\.doubleclick\.net).*?"\}\}\}\]\,/, , player?key=)
+www.youtube.com#@#+js(trusted-replace-fetch-response, /"adPlacements.*?privateDoNotAccessOrElseTrustedResourceUrlWrappedValue":"https:\/\/www\.youtube\.com\/aboutthisad\?pf=web&source=youtube&reasons=A.*?"\}\}\}\]\,/, , player?key=)
+www.youtube.com#@#+js(trusted-replace-fetch-response, /"adPlacements.*?"getAdBreakUrl":"https:\/\/www\.youtube\.com\/get_midroll_info\S+&token=ALHj.*?"\}\}\}\]\,/, , player?key=)
 
+youtube.com#@#.masthead-ad-control,.ad-div,.pyv-afc-ads-container
+youtube.com#@##promotion-shelf
+youtube.com#@#ytd-video-masthead-ad-advertiser-info-renderer,ytm-promoted-sparkles-web-renderer
+youtube.com#@#.ytlr-horizontal-list-renderer__items > .yt-virtual-list__container > .yt-virtual-list__item--visible.yt-virtual-list__item--selected.yt-virtual-list__item:has-text(Ad)
+youtube.com#@##player [class*="suggested-action-badge-icon"]:upward(.ytp-suggested-action)
 
-
+!AdGuard Ads
 youtube.com#@#+js(set-constant, google_ad_status, 1)
-youtube.com#@#+js(set-constant, ytInitialPlayerResponse.adPlacements, undefined)
 youtube.com#@#+js(set-constant, yt.config_.EXPERIMENT_FLAGS.ab_det_gen_re, false)
+youtube.com#@#ytd-video-masthead-ad-advertiser-info-renderer
+youtube.com#@##__ffYoutube1
+youtube.com#@##__ffYoutube2
+youtube.com#@##__ffYoutube3
+youtube.com#@##__ffYoutube4
+youtube.com#@##offer-module
+youtube.com#@##promotion-shelf
+youtube.com#@##watch7-branded-banner
+youtube.com#@#ytd-search-pyv-renderer
+youtube.com#@#ytm-promoted-sparkles-web-renderer
+
 youtubekids.com,youtube-nocookie.com,youtube.com#@#+js(set-constant, ytInitialPlayerResponse.adPlacements, undefined)
 youtubekids.com,youtube-nocookie.com,youtube.com#@#+js(set-constant, ytInitialPlayerResponse.adSlots, undefined)
 youtubekids.com,youtube-nocookie.com,youtube.com#@#+js(set-constant, ytInitialPlayerResponse.playerAds, undefined)
 youtubekids.com,youtube-nocookie.com,youtube.com#@#+js(set-constant, playerResponse.adPlacements, undefined)
-www.youtube.com#@#+js(trusted-replace-fetch-response, /"adPlacements.*?\/(aclk\?sa=L&ai=C(?!3OQpfbUyZYWKL_)[-_0-9A-Za-z]+__________[-_0-9A-Za-z]+A[A-Za-z]AA&|get_midroll_info\S+&token=ALHj).*?"\}\}\}\]\,/, , player?key=)
 
+youtube.com#@?##contents > ytd-rich-item-renderer:has(> #content > ytd-ad-slot-renderer)
+youtube.com#@?#ytd-rich-grid-row > #contents > ytd-rich-item-renderer:has(> #content > ytd-display-ad-renderer)
+youtube.com#@?#ytd-rich-grid-renderer ytd-rich-item-renderer div > ytd-display-ad-renderer:upward(2)
+
+!EasyList
 youtube.com#@##player [class*="suggested-action-badge-icon"]:upward(.ytp-suggested-action)
 youtube.com#@#.ytp-ad-progress-list
 youtube.com#@#.ytp-cards-teaser
@@ -30,3 +55,50 @@ youtube.com#@##merch-shelf
 youtube.com#@##offer-module
 youtube.com#@##player-ads
 youtube.com#@#[target-id="engagement-panel-ads"]
+youtube.com#@#.video-annotations
+youtube.com#@#.annotation.iv-branding
+youtube.com#@##YtKevlarVisibilityIdentifier
+youtube.com#@##YtSparklesVisibilityIdentifier
+youtube.com#@##feed-pyv-container
+youtube.com#@##pla-shelf
+youtube.com#@##video-masthead
+youtube.com#@#.ad-showing > .html5-video-container
+youtube.com#@#.companion-ad-container
+youtube.com#@#.list-view[style="margin: 7px 0pt;"]
+youtube.com#@#.promoted-sparkles-text-search-root-container
+youtube.com#@#.promoted-videos
+youtube.com#@#.statement-banner-foreground-content
+youtube.com#@#.ytd-action-companion-ad-renderer
+youtube.com#@#.ytd-carousel-ad-renderer
+youtube.com#@#.ytd-compact-promoted-video-renderer
+youtube.com#@#.ytd-merch-shelf-renderer
+youtube.com#@#.ytd-player-legacy-desktop-watch-ads-renderer
+youtube.com#@#.ytd-promoted-sparkles-text-search-renderer
+youtube.com#@#.ytd-promoted-video-renderer
+youtube.com#@#.ytd-search-pyv-renderer
+youtube.com#@#.ytd-video-masthead-ad-primary-video-overlay-renderer
+youtube.com#@#.ytd-video-masthead-ad-v3-renderer
+youtube.com#@#.ytp-ad-action-interstitial-background-container
+youtube.com#@#.ytp-ad-action-interstitial-slot
+youtube.com#@#.ytp-ad-button
+youtube.com#@#.ytp-ad-overlay-container
+youtube.com#@#.ytp-ad-player-overlay-flyout-cta
+youtube.com#@#.ytp-ad-progress
+youtube.com#@#YTM-PROMOTED-VIDEO-RENDERER
+youtube.com#@#[class^="ytd-display-ad-"]
+youtube.com#@#[layout*="display-ad-"]
+eu-proxy.startpage.com,youtube.com#@#[target-id="engagement-panel-ads"]
+eu-proxy.startpage.com,youtube.com#@#div#masthead-ad > .ytd-rich-grid-renderer
+eu-proxy.startpage.com,youtube.com#@#div.ytd-ad-slot-renderer
+eu-proxy.startpage.com,youtube.com#@#div.ytd-in-feed-ad-layout-renderer
+youtube.com#@#ytd-ad-slot-renderer
+youtube.com#@#ytd-banner-promo-renderer
+youtube.com#@#ytd-compact-promoted-video-renderer
+youtube.com#@#ytd-companion-slot-renderer
+youtube.com#@#ytd-promoted-sparkles-text-search-renderer
+eu-proxy.startpage.com,youtube.com#@#ytd-promoted-sparkles-web-renderer
+youtube.com#@#ytd-single-option-survey-renderer
+youtube.com#@#ytd-video-masthead-ad-v3-renderer
+youtube.com#@#ytm-companion-slot
+youtube.com#@#ytm-promoted-sparkles-text-search-renderer
+youtube.com#@#ytm-promoted-sparkles-web-renderer
