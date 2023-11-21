@@ -1,6 +1,6 @@
 ! Title: IHaveYTPremiumNoNeedAdBlock-whitelist
 ! Description: Whitelist of youtube.com adblock rules for uBO and leave other rules work.
-! Version: 20231110212024
+! Version: 20231122001427
 ! Expires: 1 days (update frequency)
 ! Download: https://raw.githubusercontent.com/Kristol-Ice/IHaveYTPremiumNoNeedAdBlock-whitelist/main/IHaveYTPremiumNoNeedAdBlock.txt
 ! Homeapge: https://github.com/Kristol-Ice/IHaveYTPremiumNoNeedAdBlock-whitelist
@@ -14,7 +14,18 @@ www.youtube.com#@#+js(replace-node-text, script, /^(\(function serverContract\(\
 www.youtube.com#@#+js(trusted-replace-fetch-response, /"adPlacements.*?("getAdBreakUrl":"https:\/\/www\.youtube\.com\/get_midroll_info\S+&token=ALHj|"(base)?[Uu]rl":"https:\/\/(secure)?pubads\.g\.doubleclick\.net).*?"\}\}\}\]\,/, , player?key=)
 www.youtube.com#@#+js(trusted-replace-fetch-response, /"adPlacements.*?privateDoNotAccessOrElseTrustedResourceUrlWrappedValue":"https:\/\/www\.youtube\.com\/aboutthisad\?pf=web&source=youtube&reasons=A.*?"\}\}\}\]\,/, , player?key=)
 www.youtube.com#@#+js(trusted-replace-fetch-response, /"adPlacements.*?"getAdBreakUrl":"https:\/\/www\.youtube\.com\/get_midroll_info\S+&token=ALHj.*?"\}\}\}\]\,/, , player?key=)
-www.youtube.com#@#+js(trusted-replace-xhr-response, /"adPlacements.*?\"\}\}\}\]\,/, , /player\?key=|watch\?v=|youtubei\/v1\/player/)
+www.youtube.com#@#+js(trusted-replace-fetch-response, /(contextParams":"Q0F[A-Z]U.*?)"adPlacements.*?([A-Z]"\}|"\}{2})\}\]\,/, $1, player?key=)
+www.youtube.com#@#+js(trusted-replace-fetch-response, /((?:(?:&|%26)id(?:=|%3D)o-A[A-Z]|yt_live_broadcast).*?)"adPlacements.*?([A-Z]"\}|"\}{2})\}\]\,/, $1, player?key=)
+www.youtube.com#@#+js(trusted-replace-xhr-response, /"adPlacements.*?("adSlots"|"adBreakHeartbeatParams")/gms, $1, /youtubei\/v1\/player\/?$/)
+www.youtube.com#@#+js(trusted-replace-xhr-response, /"adPlacements.*?([A-Z]"\}|"\}{2})\}\]\,/, , /player\?key=|watch\?v=|youtubei\/v1\/player/)
+www.youtube.com#@#+js(trusted-replace-xhr-response, /"adPlacements.*?("adSlots"|"adBreakHeartbeatParams")/gms, $1, youtubei/v1/player)
+
+youtube.com,youtubekids.com,youtube-nocookie.com#@#+js(set, ytInitialPlayerResponse.playerAds, undefined)
+youtube.com,youtubekids.com,youtube-nocookie.com#@#+js(set, ytInitialPlayerResponse.adPlacements, undefined)
+youtube.com,youtubekids.com,youtube-nocookie.com#@#+js(set, ytInitialPlayerResponse.adSlots, undefined)
+youtube.com,youtubekids.com,youtube-nocookie.com#@#+js(set, playerResponse.adPlacements, undefined)
+
+m.youtube.com,music.youtube.com,youtubekids.com,youtube-nocookie.com#@#+js(json-prune, playerResponse.adPlacements playerResponse.playerAds playerResponse.adSlots adPlacements playerAds adSlots important)
 
 youtube.com#@#.masthead-ad-control,.ad-div,.pyv-afc-ads-container
 youtube.com#@##promotion-shelf
@@ -87,16 +98,16 @@ youtube.com#@#.ytp-ad-progress
 youtube.com#@#YTM-PROMOTED-VIDEO-RENDERER
 youtube.com#@#[class^="ytd-display-ad-"]
 youtube.com#@#[layout*="display-ad-"]
-eu-proxy.startpage.com,youtube.com#@#[target-id="engagement-panel-ads"]
-eu-proxy.startpage.com,youtube.com#@#div#masthead-ad > .ytd-rich-grid-renderer
-eu-proxy.startpage.com,youtube.com#@#div.ytd-ad-slot-renderer
-eu-proxy.startpage.com,youtube.com#@#div.ytd-in-feed-ad-layout-renderer
+youtube.com#@#[target-id="engagement-panel-ads"]
+youtube.com#@#div#masthead-ad > .ytd-rich-grid-renderer
+youtube.com#@#div.ytd-ad-slot-renderer
+youtube.com#@#div.ytd-in-feed-ad-layout-renderer
 youtube.com#@#ytd-ad-slot-renderer
 youtube.com#@#ytd-banner-promo-renderer
 youtube.com#@#ytd-compact-promoted-video-renderer
 youtube.com#@#ytd-companion-slot-renderer
 youtube.com#@#ytd-promoted-sparkles-text-search-renderer
-eu-proxy.startpage.com,youtube.com#@#ytd-promoted-sparkles-web-renderer
+youtube.com#@#ytd-promoted-sparkles-web-renderer
 youtube.com#@#ytd-single-option-survey-renderer
 youtube.com#@#ytd-video-masthead-ad-v3-renderer
 youtube.com#@#ytm-companion-slot
