@@ -1,6 +1,6 @@
 ! Title: IHaveYTPremiumNoNeedAdBlock-whitelist
 ! Description: Whitelist of youtube.com adblock rules for uBO and leave other rules work.
-! Version: 20231204210812
+! Version: 20231208160558
 ! Expires: 1 days (update frequency)
 ! Download: https://raw.githubusercontent.com/Kristol-Ice/IHaveYTPremiumNoNeedAdBlock-whitelist/main/IHaveYTPremiumNoNeedAdBlock.txt
 ! Homeapge: https://github.com/Kristol-Ice/IHaveYTPremiumNoNeedAdBlock-whitelist
@@ -46,6 +46,7 @@ youtube.com#@?#ytd-rich-grid-row > #contents > ytd-rich-item-renderer:has(> #con
 youtube.com#@?#ytd-rich-grid-renderer ytd-rich-item-renderer div > ytd-display-ad-renderer:upward(2)
 
 !EasyList
+youtube.com#@##ytd-player button.ytp-suggested-action-badge
 youtube.com#@##player [class*="suggested-action-badge-icon"]:upward(.ytp-suggested-action)
 youtube.com#@#.ytp-ad-progress-list
 youtube.com#@#.ytp-cards-teaser
@@ -102,6 +103,8 @@ youtube.com#@#ytd-video-masthead-ad-v3-renderer
 youtube.com#@#ytm-companion-slot
 youtube.com#@#ytm-promoted-sparkles-text-search-renderer
 youtube.com#@#ytm-promoted-sparkles-web-renderer
+youtube.com#@#ytd-rich-item-renderer:has(> .ytd-rich-item-renderer > ytd-ad-slot-renderer)
+youtube.com#@#ytd-rich-item-renderer:has(ytd-display-ad-renderer)
 
 !AdGuard – Popup Overlays
 youtube.com#@#tp-yt-iron-overlay-backdrop
