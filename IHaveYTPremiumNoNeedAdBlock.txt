@@ -1,6 +1,6 @@
 ! Title: IHaveYTPremiumNoNeedAdBlock-whitelist
 ! Description: Whitelist of youtube.com adblock rules for uBO and leave other rules work.
-! Version: 20231208160558
+! Version: 20231219163437
 ! Expires: 1 days (update frequency)
 ! Download: https://raw.githubusercontent.com/Kristol-Ice/IHaveYTPremiumNoNeedAdBlock-whitelist/main/IHaveYTPremiumNoNeedAdBlock.txt
 ! Homeapge: https://github.com/Kristol-Ice/IHaveYTPremiumNoNeedAdBlock-whitelist
@@ -15,6 +15,8 @@ youtube.com#@#+js(set-constant, google_ad_status, 1)
 youtube.com#@#+js(trusted-replace-fetch-response, /"adPlacements.*?([A-Z]"\}|"\}{2})\}\]\,/, , player?key=)
 youtube.com#@#+js(trusted-replace-xhr-response, /"adPlacements.*?("adSlots"|"adBreakHeartbeatParams")/gms, $1, youtubei/v1/player)
 youtube.com#@#+js(trusted-replace-xhr-response, /"adPlacements.*?([A-Z]"\}|"\}{2})\}\]\,/, , /player\?key=|watch\?v=|youtubei\/v1\/player/)
+youtube.com#@#+js(trusted-replace-xhr-response, /"adPlacements.*?([A-Z]"\}|"\}{2})\}\]\,/, , /playlist\?list=|player\?key=|watch\?v=|youtubei\/v1\/player/)
+
 
 youtube.com#@#.masthead-ad-control,.ad-div,.pyv-afc-ads-container
 youtube.com#@##promotion-shelf
