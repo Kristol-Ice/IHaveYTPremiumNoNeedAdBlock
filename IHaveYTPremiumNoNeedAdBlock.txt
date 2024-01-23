@@ -1,11 +1,11 @@
 ! Title: IHaveYTPremiumNoNeedAdBlock-whitelist
 ! Description: Whitelist of youtube.com adblock rules for uBO and leave other rules work.
-! Version: 20240114171832
+! Version: 20240123190455
 ! Expires: 1 days (update frequency)
 ! Download: https://raw.githubusercontent.com/Kristol-Ice/IHaveYTPremiumNoNeedAdBlock-whitelist/main/IHaveYTPremiumNoNeedAdBlock.txt
 ! Homeapge: https://github.com/Kristol-Ice/IHaveYTPremiumNoNeedAdBlock-whitelist
 
-!uBlock Ads
+!Sciptlet
 !below rules might need to insert to "My filters" yourself
 youtube.com#@#+js(set-constant, playerResponse.adPlacements, undefined)
 youtube.com#@#+js(set-constant, ytInitialPlayerResponse.playerAds, undefined)
