@@ -1,6 +1,6 @@
 ! Title: IHaveYTPremiumNoNeedAdBlock-whitelist
 ! Description: Whitelist of youtube.com adblock rules for uBO and leave other rules work.
-! Version: 20240123190455
+! Version: 20240201000324
 ! Expires: 1 days (update frequency)
 ! Download: https://raw.githubusercontent.com/Kristol-Ice/IHaveYTPremiumNoNeedAdBlock-whitelist/main/IHaveYTPremiumNoNeedAdBlock.txt
 ! Homeapge: https://github.com/Kristol-Ice/IHaveYTPremiumNoNeedAdBlock-whitelist
@@ -16,11 +16,12 @@ youtube.com#@#+js(trusted-replace-fetch-response, /"adPlacements.*?([A-Z]"\}|"\}
 youtube.com#@#+js(trusted-replace-xhr-response, /"adPlacements.*?("adSlots"|"adBreakHeartbeatParams")/gms, $1, youtubei/v1/player)
 youtube.com#@#+js(trusted-replace-xhr-response, /"adPlacements.*?([A-Z]"\}|"\}{2})\}\]\,/, , /player\?key=|watch\?v=|youtubei\/v1\/player/)
 youtube.com#@#+js(trusted-replace-xhr-response, /"adPlacements.*?([A-Z]"\}|"\}{2})\}\]\,/, , /playlist\?list=|player\?key=|watch\?v=|youtubei\/v1\/player/)
-music.youtube.com##+js(json-prune, auxiliaryUi.messageRenderers.upsellDialogRenderer)
-music.youtube.com##+js(set-constant, ytInitialPlayerResponse.auxiliaryUi.messageRenderers.upsellDialogRenderer, undefined)
-music.youtube.com##+js(trusted-set-cookie, SOCS, CAISNQgDEitib3FfaWRlbnRpdHlmcm9udGVuZHVpc2VydmVyXzIwMjMwODI5LjA3X3AxGgJlbiADGgYIgJnPpwY, , , reload, 1, domain, youtube.com)
-music.youtube.com##+js(json-prune, playerResponse.adPlacements playerResponse.playerAds playerResponse.adSlots adPlacements playerAds adSlots important)
-music.youtube.com##+js(json-prune, playerResponse.adPlacements playerResponse.playerAds playerResponse.adSlots adPlacements playerAds adSlots)
+music.youtube.com#@#+js(json-prune, auxiliaryUi.messageRenderers.upsellDialogRenderer)
+music.youtube.com#@#+js(set-constant, ytInitialPlayerResponse.auxiliaryUi.messageRenderers.upsellDialogRenderer, undefined)
+music.youtube.com#@#+js(trusted-set-cookie, SOCS, CAISNQgDEitib3FfaWRlbnRpdHlmcm9udGVuZHVpc2VydmVyXzIwMjMwODI5LjA3X3AxGgJlbiADGgYIgJnPpwY, , , reload, 1, domain, youtube.com)
+music.youtube.com#@#+js(json-prune, playerResponse.adPlacements playerResponse.playerAds playerResponse.adSlots adPlacements playerAds adSlots important)
+music.youtube.com#@#+js(json-prune, playerResponse.adPlacements playerResponse.playerAds playerResponse.adSlots adPlacements playerAds adSlots)
+youtube.com#@#+js(trusted-replace-fetch-response, '/\"adSlots.*?\}\]\}\}\],/', , player?key=)
 
 www.youtube.com#@#div[id="player-ads"]
 
