@@ -1,31 +1,26 @@
 ! Title: IHaveYTPremiumNoNeedAdBlock-whitelist
 ! Description: Whitelist of youtube.com adblock rules for uBO and leave other rules work.
-! Version: 20240302193534
+! Version: 20240302194206
 ! Expires: 1 days (update frequency)
 ! Download: https://raw.githubusercontent.com/Kristol-Ice/IHaveYTPremiumNoNeedAdBlock-whitelist/main/IHaveYTPremiumNoNeedAdBlock.txt
 ! Homeapge: https://github.com/Kristol-Ice/IHaveYTPremiumNoNeedAdBlock-whitelist
 
 !Sciptlet
-!below rules might need to insert to "My filters" yourself
-youtube.com#@#+js(set-constant, playerResponse.adPlacements, undefined)
-youtube.com#@#+js(set-constant, ytInitialPlayerResponse.playerAds, undefined)
-youtube.com#@#+js(set-constant, ytInitialPlayerResponse.adSlots, undefined)
-youtube.com#@#+js(set-constant, ytInitialPlayerResponse.adPlacements, undefined)
-youtube.com#@#+js(set-constant, google_ad_status, 1)
-youtube.com#@#+js(trusted-replace-fetch-response, /"adPlacements.*?([A-Z]"\}|"\}{2})\}\]\,/, , player?key=)
-youtube.com#@#+js(trusted-replace-xhr-response, /"adPlacements.*?("adSlots"|"adBreakHeartbeatParams")/gms, $1, youtubei/v1/player)
-youtube.com#@#+js(trusted-replace-xhr-response, /"adPlacements.*?([A-Z]"\}|"\}{2})\}\]\,/, , /player\?key=|watch\?v=|youtubei\/v1\/player/)
-youtube.com#@#+js(trusted-replace-xhr-response, /"adPlacements.*?([A-Z]"\}|"\}{2})\}\]\,/, , /playlist\?list=|player\?key=|watch\?v=|youtubei\/v1\/player/)
-music.youtube.com#@#+js(json-prune, auxiliaryUi.messageRenderers.upsellDialogRenderer)
-music.youtube.com#@#+js(set-constant, ytInitialPlayerResponse.auxiliaryUi.messageRenderers.upsellDialogRenderer, undefined)
-music.youtube.com#@#+js(trusted-set-cookie, SOCS, CAISNQgDEitib3FfaWRlbnRpdHlmcm9udGVuZHVpc2VydmVyXzIwMjMwODI5LjA3X3AxGgJlbiADGgYIgJnPpwY, , , reload, 1, domain, youtube.com)
-music.youtube.com#@#+js(json-prune, playerResponse.adPlacements playerResponse.playerAds playerResponse.adSlots adPlacements playerAds adSlots important)
-music.youtube.com#@#+js(json-prune, playerResponse.adPlacements playerResponse.playerAds playerResponse.adSlots adPlacements playerAds adSlots)
-youtube.com#@#+js(trusted-replace-fetch-response, '/\"adSlots.*?\}\]\}\}\],/', , player?key=)
+!uBlock Ads 20240302194140
+tv.youtube.com#@#+js(trusted-replace-xhr-response, '"adPlacements"', '"no_ads"', /playlist\?list=|player\?|watch\?v=|youtubei\/v1\/player/)
+www.youtube.com#@#+js(trusted-replace-xhr-response, /"adPlacements.*?([A-Z]"\}|"\}{2})\}\]\,/, , /playlist\?list=|player\?|watch\?v=|youtubei\/v1\/player/)
+www.youtube.com#@#+js(trusted-replace-xhr-response, /"adPlacements.*?("adSlots"|"adBreakHeartbeatParams")/gms, $1, youtubei/v1/player)
+www.youtube.com#@#+js(trusted-replace-fetch-response, /"adPlacements.*?([A-Z]"\}|"\}{2})\}\]\,/, , player?)
+www.youtube.com#@#+js(trusted-replace-fetch-response, /\"adSlots.*?\}\]\}\}\]\,/, , player?)
 
 !AdGuard Ads 20240302193603
-youtube.com#@#+js(set-constant, ytInitialPlayerResponse.playerConfig.ssapConfig, undefined)
-youtube.com#@#+js(json-prune, playerResponse.playerConfig.ssapConfig playerResponse.streamingData.serverAbrStreamingUrl playerConfig.ssapConfig streamingData.serverAbrStreamingUrl)
+youtubekids.com,youtube-nocookie.com,youtube.com#@#+js(set-constant, ytInitialPlayerResponse.playerConfig.ssapConfig, undefined)
+youtubekids.com,youtube-nocookie.com,youtube.com#@#+js(set-constant, ytInitialPlayerResponse.streamingData.serverAbrStreamingUrl, undefined)
+youtubekids.com,youtube-nocookie.com,youtube.com#@#+js(set-constant, ytInitialPlayerResponse.adPlacements, undefined)
+youtubekids.com,youtube-nocookie.com,youtube.com#@#+js(set-constant, ytInitialPlayerResponse.adSlots, undefined)
+youtubekids.com,youtube-nocookie.com,youtube.com#@#+js(set-constant, ytInitialPlayerResponse.playerAds, undefined)
+youtubekids.com,youtube-nocookie.com,youtube.com#@#+js(set-constant, playerResponse.adPlacements, undefined)
+youtube.com#@#+js(set-constant, google_ad_status, 1)
 
 www.youtube.com#@#div[id="player-ads"]
 
