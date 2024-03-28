@@ -1,21 +1,21 @@
 ! Title: IHaveYTPremiumNoNeedAdBlock-whitelist
 ! Description: Whitelist of youtube.com adblock rules for uBO and leave other rules work.
-! Version: 20240328145209
+! Version: 20240328145404
 ! Expires: 1 days (update frequency)
 ! Download: https://raw.githubusercontent.com/Kristol-Ice/IHaveYTPremiumNoNeedAdBlock-whitelist/main/IHaveYTPremiumNoNeedAdBlock.txt
 ! Homeapge: https://github.com/Kristol-Ice/IHaveYTPremiumNoNeedAdBlock-whitelist
 
 !Sciptlet
 !!uBlock filters – Quick fixes
-www.youtube.com##+js(trusted-replace-fetch-response, '/"adPlacements.*?([A-Z]"\}|"\}{2,4})\}\],/', , player?)
-www.youtube.com##+js(json-prune, playerResponse.playerConfig.ssapConfig playerResponse.streamingData.serverAbrStreamingUrl playerConfig.ssapConfig streamingData.serverAbrStreamingUrl)
-www.youtube.com##+js(trusted-replace-fetch-response, '/\"adSlots.*?\}\]\}\}\],/', , player?)
-www.youtube.com##+js(set-constant, ytInitialPlayerResponse.playerConfig.ssapConfig, undefined)
-www.youtube.com##+js(set-constant, ytInitialPlayerResponse.streamingData.serverAbrStreamingUrl, undefined)
+www.youtube.com#@#+js(trusted-replace-fetch-response, '/"adPlacements.*?([A-Z]"\}|"\}{2,4})\}\],/', , player?)
+www.youtube.com#@#+js(json-prune, playerResponse.playerConfig.ssapConfig playerResponse.streamingData.serverAbrStreamingUrl playerConfig.ssapConfig streamingData.serverAbrStreamingUrl)
+www.youtube.com#@#+js(trusted-replace-fetch-response, '/\"adSlots.*?\}\]\}\}\],/', , player?)
+www.youtube.com#@#+js(set-constant, ytInitialPlayerResponse.playerConfig.ssapConfig, undefined)
+www.youtube.com#@#+js(set-constant, ytInitialPlayerResponse.streamingData.serverAbrStreamingUrl, undefined)
 
 !!uBlock filters – Ads
-www.youtube.com##+js(set-constant, ytInitialPlayerResponse.playerAds, undefined)
+www.youtube.com#@#+js(set-constant, ytInitialPlayerResponse.playerAds, undefined)
 
 !!AdGuard – Ads
-youtube.com##+js(json-prune, playerResponse.playerConfig.ssapConfig playerResponse.streamingData.serverAbrStreamingUrl playerConfig.ssapConfig streamingData.serverAbrStreamingUrl)
-youtube.com##+js(set-constant, google_ad_status, 1)
+youtube.com#@#+js(json-prune, playerResponse.playerConfig.ssapConfig playerResponse.streamingData.serverAbrStreamingUrl playerConfig.ssapConfig streamingData.serverAbrStreamingUrl)
+youtube.com#@#+js(set-constant, google_ad_status, 1)
